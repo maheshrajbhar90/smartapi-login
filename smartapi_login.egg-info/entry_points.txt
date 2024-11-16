@@ -1,0 +1,2 @@
+[console_scripts]
+smart_login = main:SmartAPIHelper

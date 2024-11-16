@@ -1,0 +1,4 @@
+pandas>=1.0.0
+requests>=2.0.0
+pytz>=2020.1
+pyotp>=2.0.0
