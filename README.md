@@ -19,7 +19,7 @@ To ensure that all necessary libraries are installed, the following Python scrip
 
 $pip install pandas requests pytz pyotp
 
-$pip install smartapi-login or pip install git+https://github.com/maheshrajbhar90/auto-smartapi.git
+$pip install smartapi-login or pip install git+https://github.com/maheshrajbhar90/smartapi-login.git
 
 Usage
 Here’s how you can use the SmartAPI class in your script:
