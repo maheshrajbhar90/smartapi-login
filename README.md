@@ -5,7 +5,7 @@ This Python library (SmartAPI) is designed to interact with the Angel Broking AP
 The provided script includes functions for logging in, fetching market data, handling sessions, and calculating live market prices and historical data for specific instruments.
 
 Features
-Login: Allows users to login with their credentials and store them for API interactions.
+Login: Allows users to login with their credentials in a very easy way to intract with their API interactions.
 Instrument Data: Fetches instrument details such as tokens, expiry dates, and more.
 Live Market Data: Retrieves the last traded price (LTP) for instruments.
 Historical Data: Fetches OHLC (Open, High, Low, Close) data for instruments.
@@ -19,7 +19,7 @@ To ensure that all necessary libraries are installed, the following Python scrip
 
 $pip install pandas requests pytz pyotp
 
-$pip install smartapi-login or pip install git+https://github.com/maheshrajbhar90/smartapi-login.git
+$pip install smartapi-login or pip install git+https://github.com/maheshrajbhar90/auto-smartapi.git
 
 Usage
 Here’s how you can use the SmartAPI class in your script:
