@@ -8,7 +8,7 @@ setup(
     long_description_content_type='text/markdown',
     author='Mahesh Kumar',
     author_email='maheshrajbhar90@gmail.com',
-    url='https://github.com/maheshrajbhar90/auto-smartapi.git',
+    url='https://github.com/maheshrajbhar90/smartapi-login.git',
     packages=find_packages(),
     
     install_requires=[
