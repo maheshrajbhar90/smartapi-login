@@ -16,7 +16,6 @@ setup(
         'requests>=2.0.0',
         'pytz>=2020.1',
         'pyotp>=2.0.0',
-        'SmartApi @ git+https://github.com/maheshrajbhar90/auto-smartapi.git',  # Example for private GitHub repo
     ],
     
     classifiers=[
