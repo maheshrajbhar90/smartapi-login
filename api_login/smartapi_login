@@ -15,7 +15,6 @@ required_libraries = [
     'requests',
     'pytz',
     'pyotp',
-    'SmartApi'  # Assuming SmartApi is a package or module that needs to be installed
 ]
 
 def install_libraries(libraries):
