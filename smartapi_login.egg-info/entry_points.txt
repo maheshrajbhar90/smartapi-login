@@ -1,0 +1,2 @@
+[console_scripts]
+smartapi_login = smartapi_login:SmartAPI.run
