@@ -5,7 +5,7 @@ This Python library (SmartAPI) is designed to interact with the Angel Broking AP
 The provided script includes functions for logging in, fetching market data, handling sessions, and calculating live market prices and historical data for specific instruments.
 
 Features
-Login: Allows users to login with their credentials in a very easy way to intract with their API interactions.
+Login:  Allows users to log in with their credentials in an easy way to interact with their API.
 Instrument Data: Fetches instrument details such as tokens, expiry dates, and more.
 Live Market Data: Retrieves the last traded price (LTP) for instruments.
 Historical Data: Fetches OHLC (Open, High, Low, Close) data for instruments.
@@ -19,13 +19,20 @@ To ensure that all necessary libraries are installed, the following Python scrip
 
 $pip install pandas requests pytz pyotp
 
-$pip install smartapi-login or pip install git+https://github.com/maheshrajbhar90/auto-smartapi.git
+$pip install smartapi-login
 
 Usage
 Here’s how you can use the SmartAPI class in your script:
 
+Import the library 
+
+from smartapi_login import SmartAPIHelper
+
+
 1. Initialize the SmartAPI class
-api = SmartAPI()
+
+
+api = SmartAPIHelper()
 
 2. Login with Your Credentials   
 You need to provide your credentials for logging into the API:
@@ -84,11 +91,22 @@ Initializes both historical and trading API sessions.
 get_ltp(symbol)
 Fetches the Last Traded Price (LTP) for a given symbol.
 
-get_tradingsymbols()
-Fetches the trading symbols based on the spot price of Nifty or BankNifty.
+get_tradingsymbols('Nifty Bank')
+Fetches the trading symbols for Nifty or BankNifty options, with the strike prices ranging from 1500 points above to 1500 points below the spot price of Nifty or BankNifty.
+
 
 get_ohlc(symbol, interval, n)
-Fetches the OHLC data for the given symbol over the specified interval and number of days.
+Fetches the OHLC data for the given symbol over the specified interval and number of days (n).
+
+n: The number of days for which you want to extract data.
+interval: The time interval for the OHLC data. It should be one of the following:
+ONE_MINUTE: 1 Minute
+THREE_MINUTE: 3 Minutes
+FIVE_MINUTE: 5 Minutes
+TEN_MINUTE: 10 Minutes
+FIFTEEN_MINUTE: 15 Minutes
+THIRTY_MINUTE: 30 Minutes
+Note: For timeframes shorter than 1 day, the maximum limit is 60 days, as imposed by the broker.
 
 get_ist_now()
 Fetches the current time in IST (Indian Standard Time).
