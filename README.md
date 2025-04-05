@@ -1,127 +1,125 @@
-SmartAPI - Python Library for Angel Broking API Integration
-Overview
-This Python library (SmartAPI) is designed to interact with the Angel Broking API for fetching financial data such as instrument details, live market data, historical data, and more. The library makes use of several popular Python libraries, including pandas, requests, and pyotp, to handle data fetching, processing, and API authentication.
+# SmartAPI - Python Library for Angel Broking API Integration
 
-The provided script includes functions for logging in, fetching market data, handling sessions, and calculating live market prices and historical data for specific instruments.
+## 📌 Overview
+`SmartAPI` is a Python library designed to interact with the Angel Broking API. It enables users to fetch financial data such as instrument details, live market data, historical OHLC data, and more. It leverages popular libraries like `pandas`, `requests`, and `pyotp` for data handling and secure API authentication.
 
-Features
-Login:  Allows users to log in with their credentials in an easy way to interact with their API.
-Instrument Data: Fetches instrument details such as tokens, expiry dates, and more.
-Live Market Data: Retrieves the last traded price (LTP) for instruments.
-Historical Data: Fetches OHLC (Open, High, Low, Close) data for instruments.
-Session Handling: Initializes and manages separate sessions for historical and trading APIs.
-Time Zone Management: Provides functionality to fetch the current time in IST (Indian Standard Time).
-Installation
-This library requires several Python packages. You can install the required dependencies using pip.
+This wrapper simplifies session management and provides utility methods for traders and analysts to interact seamlessly with Angel Broking's SmartAPI.
 
-Step 1: Install Required Libraries
-To ensure that all necessary libraries are installed, the following Python script checks for and installs the missing libraries:
+---
 
-$pip install pandas requests pytz pyotp
+## ✨ Features
 
-$pip install smartapi-login
+| Feature             | Description                                                                 |
+|---------------------|-----------------------------------------------------------------------------|
+| **Login**           | Easy authentication using credentials, MPIN, and TOTP                       |
+| **Instrument Data** | Fetch instrument tokens, expiry dates, and other metadata                  |
+| **Live Market Data**| Retrieve Last Traded Price (LTP) for any symbol                            |
+| **Historical Data** | Fetch OHLC (Open, High, Low, Close) data for a given interval and period   |
+| **Session Handling**| Separate sessions for historical and trading APIs                          |
+| **Time Management** | Fetches current time in IST (Indian Standard Time)                         |
 
-Usage
-Here’s how you can use the SmartAPI class in your script:
+---
 
-Import the library 
+## 🛠 Installation
 
+Install all required dependencies using pip:
+
+```bash
+pip install pandas requests pytz pyotp
+pip install smartapi-login
+```
+
+---
+
+## 🚀 Usage
+
+### 1. Import the Library
+```python
 from smartapi_login import SmartAPIHelper
+```
 
-
-1. Initialize the SmartAPI class
-
-
+### 2. Initialize the API Class
+```python
 api = SmartAPIHelper()
+```
 
-2. Login with Your Credentials   
-You need to provide your credentials for logging into the API:
-api.login(api_key_hist='YOUR_HISTORICAL_API_KEY', 
-          api_key_trading='YOUR_TRADING_API_KEY', 
-          uid='YOUR_USER_ID', 
-          mpin='YOUR_MPIN', 
+### 3. Login with Your Credentials
+```python
+api.login(api_key_hist='YOUR_HISTORICAL_API_KEY',
+          api_key_trading='YOUR_TRADING_API_KEY',
+          uid='YOUR_USER_ID',
+          mpin='YOUR_MPIN',
           totp='YOUR_TOTP_SECRET')
+```
 
-
-3. Fetch Instrument Data
-To fetch the instrument details (e.g., symbol, token, exchange segment):
+### 4. Fetch Instrument Data
+```python
 instrument_df = api.fetch_instrument_df()
 print(instrument_df.head())
+```
 
-
-
-4. Fetch the Last Traded Price (LTP)
-To get the LTP for a specific instrument (e.g., 'WIPRO'):
+### 5. Fetch the Last Traded Price (LTP)
+```python
 ltp = api.get_ltp('WIPRO')
 print(f"Last Traded Price: {ltp}")
+```
 
-
-5. Fetch Trading Symbols
-To fetch the trading symbols based on the current spot price:
-symbols_df = api.get_tradingsymbols()
+### 6. Fetch Trading Symbols
+```python
+symbols_df = api.get_tradingsymbols('Nifty Bank')
 print(symbols_df.head())
+```
 
-
-6. Fetch Historical Data (OHLC)
-To fetch OHLC data for a specific symbol:
-ohlc_data = api.get_ohlc('BANKNIFTY', '5minute', 30)  # 30 days of data
+### 7. Fetch Historical OHLC Data
+```python
+ohlc_data = api.get_ohlc('BANKNIFTY', '5minute', 30)
 print(ohlc_data.head())
+```
 
-
-8. Get Current Time in IST
-To get the current time in IST:
+### 8. Get Current Time in IST
+```python
 current_time = api.get_ist_now()
 print(f"Current IST Time: {current_time}")
-Methods:
-login(api_key_hist, api_key_trading, uid, mpin, totp)
-Logs in with the provided credentials (API keys, user ID, MPIN, and TOTP secret).
+```
 
-fetch_instrument_df()
-Fetches the instrument details (tokens, expiry dates, etc.) and returns it as a pandas DataFrame.
+---
 
-get_historical_data_session()
-Generates a session for accessing historical market data.
+## 📘 Method Descriptions
 
-get_trading_api_session()
-Generates a session for trading-related API interactions.
+| Method                       | Description                                                                 |
+|------------------------------|-----------------------------------------------------------------------------|
+| `login()`                    | Logs in using API keys, user ID, MPIN, and TOTP                            |
+| `fetch_instrument_df()`     | Returns instrument metadata as a pandas DataFrame                          |
+| `get_historical_data_session()` | Returns a session for accessing historical market data                    |
+| `get_trading_api_session()` | Returns a session for trading API                                          |
+| `initialize_sessions()`     | Initializes both trading and historical sessions                           |
+| `get_ltp(symbol)`           | Returns the Last Traded Price for the given symbol                         |
+| `get_tradingsymbols('Nifty Bank')` | Fetches option symbols based on current spot price of Nifty or BankNifty |
+| `get_ohlc(symbol, interval, n)` | Fetches OHLC data for specified interval and days                         |
+| `get_ist_now()`             | Returns the current IST time                                               |
 
-initialize_sessions()
-Initializes both historical and trading API sessions.
+### ⏱ Supported OHLC Intervals
+- `ONE_MINUTE`: 1 Minute
+- `THREE_MINUTE`: 3 Minutes
+- `FIVE_MINUTE`: 5 Minutes
+- `TEN_MINUTE`: 10 Minutes
+- `FIFTEEN_MINUTE`: 15 Minutes
+- `THIRTY_MINUTE`: 30 Minutes
 
-get_ltp(symbol)
-Fetches the Last Traded Price (LTP) for a given symbol.
+> Note: For intervals < 1 day, data is available for up to 60 days (as per broker limits).
 
-get_tradingsymbols('Nifty Bank')
-Fetches the trading symbols for Nifty or BankNifty options, with the strike prices ranging from 1500 points above to 1500 points below the spot price of Nifty or BankNifty.
+---
 
-
-get_ohlc(symbol, interval, n)
-Fetches the OHLC data for the given symbol over the specified interval and number of days (n).
-
-n: The number of days for which you want to extract data.
-interval: The time interval for the OHLC data. It should be one of the following:
-ONE_MINUTE: 1 Minute
-THREE_MINUTE: 3 Minutes
-FIVE_MINUTE: 5 Minutes
-TEN_MINUTE: 10 Minutes
-FIFTEEN_MINUTE: 15 Minutes
-THIRTY_MINUTE: 30 Minutes
-Note: For timeframes shorter than 1 day, the maximum limit is 60 days, as imposed by the broker.
-
-get_ist_now()
-Fetches the current time in IST (Indian Standard Time).
-
-Example
-Here’s an example of how to use the entire class:
-
+## 💡 Example
+```python
 # Initialize the API
-api = SmartAPI()
+api = SmartAPIHelper()
 
 # Login
-api.login(api_key_hist='your_api_key_hist', 
-          api_key_trading='your_api_key_trading', 
-          uid='your_user_id', 
-          mpin='your_mpin', 
+api.login(api_key_hist='your_api_key_hist',
+          api_key_trading='your_api_key_trading',
+          uid='your_user_id',
+          mpin='your_mpin',
           totp='your_totp_secret')
 
 # Fetch instrument data
@@ -135,8 +133,15 @@ print(f"LTP: {ltp}")
 # Fetch OHLC data
 ohlc_data = api.get_ohlc('BANKNIFTY', '5minute', 30)
 print(ohlc_data.head())
+```
 
+---
 
+## 📬 Contact
+Feel free to raise issues or contribute to improvements by opening a pull request or submitting an issue!
 
+---
 
+## 📄 License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
