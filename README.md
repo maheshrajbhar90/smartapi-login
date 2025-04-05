@@ -140,6 +140,8 @@ print(ohlc_data.head())
 ## 📬 Contact
 Feel free to raise issues or contribute to improvements by opening a pull request or submitting an issue!
 
+contact-maheshrajbhar90@gmail.com
+
 ---
 
 ## 📄 License
